@@ -40,62 +40,71 @@ public sealed class Scanner
     {
      accum.Append(ch); input.Read();
      if (input.Peek() == -1) { break;
-    } else 
+    } 
+    else
     {
      ch = (char)input.Peek();
     } 
-   } this.result.Add(accum.ToString());
+   } 
+   this.result.Add(accum.ToString());
   } else if (ch == '"')
   {
-  text.StringBuilder accum = new text.StringBuilder();
-  input.Read();
-  if (input.Peek() == -1)
-  { 
-   throw new System.Exception("unterminated string literal"); 
-  } while ((ch = (char)input.Peek()) != '"')
-  {
-   accum.Append(ch); 
-   input.Read(); 
+   text.StringBuilder accum = new text.StringBuilder();
+   input.Read();
    if (input.Peek() == -1)
+   { 
+    throw new System.Exception("unterminated string literal"); 
+   } 
+   while ((ch = (char)input.Peek()) != '"')
    {
-    throw new System.Exception("unterminated string literal");
+    accum.Append(ch); 
+    input.Read(); 
+    if (input.Peek() == -1)
+    {
+     throw new System.Exception("unterminated string literal");
+    }
    }
-  } input.Read(); this.result.Add(accum);
- } else if (char.IsDigit(ch))
- { text.StringBuilder accum = new text.StringBuilder();
- while (char.IsDigit(ch))
- { 
-  accum.Append(ch);
-  input.Read(); 
-  if (input.Peek() == -1)
+   input.Read(); this.result.Add(accum);
+  } 
+  else if (char.IsDigit(ch))
   { 
-   break;
-  } else 
+   text.StringBuilder accum = new text.StringBuilder();
+   while (char.IsDigit(ch))
+   { 
+    accum.Append(ch);
+    input.Read(); 
+    if (input.Peek() == -1)
+    { 
+     break;
+    }
+    else 
+    {
+     ch = (char)input.Peek();
+    }
+   }
+   this.result.Add(int.Parse(accum.ToString­())); 
+  } 
+  else switch (ch) 
   {
-   ch = (char)input.Peek();
+   case '+': 
+   input.Read();
+   this.result.Add(Scanner.Add); 
+   break; case '-': input.Read(); 
+   this.result.Add(Scanner.Sub);
+   break; case '*': 
+   input.Read();
+   this.result.Add(Scanner.Mul); 
+   break;
+   case '/':
+   input.Read();
+   this.result.Add(Scanner.Div);
+   break; case '=': input.Read();
+   this.result.Add(Scanner.Equal); 
+   break; case ';':
+   input.Read();
+   this.result.Add(Scanner.Semi);
+   break;
+   }
   }
- } this.result.Add(int.Parse(accum.ToString­())); 
-} else switch (ch) 
-{
- case '+': 
- input.Read();
- this.result.Add(Scanner.Add); 
- break; case '-': input.Read(); 
- this.result.Add(Scanner.Sub);
- break; case '*': 
- input.Read();
- this.result.Add(Scanner.Mul); 
- break;
- case '/':
- input.Read();
- this.result.Add(Scanner.Div);
- break; case '=': input.Read();
- this.result.Add(Scanner.Equal); 
- break; case ';':
- input.Read();
- this.result.Add(Scanner.Semi);
- break;
  }
-}
-}
 }
