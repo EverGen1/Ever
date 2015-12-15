@@ -87,23 +87,29 @@ public sealed class Scanner
   else switch (ch) 
   {
    case '+': 
-   input.Read();
-   this.result.Add(Scanner.Add); 
-   break; case '-': input.Read(); 
-   this.result.Add(Scanner.Sub);
-   break; case '*': 
-   input.Read();
-   this.result.Add(Scanner.Mul); 
-   break;
+    input.Read();
+    this.result.Add(Scanner.Add); 
+    break;
+   case '-':
+    input.Read(); 
+    this.result.Add(Scanner.Sub);
+    break; 
+   case '*': 
+    input.Read();
+    this.result.Add(Scanner.Mul); 
+    break;
    case '/':
-   input.Read();
-   this.result.Add(Scanner.Div);
-   break; case '=': input.Read();
-   this.result.Add(Scanner.Equal); 
-   break; case ';':
-   input.Read();
-   this.result.Add(Scanner.Semi);
-   break;
+    input.Read();
+    this.result.Add(Scanner.Div);
+    break;
+   case '=':
+    input.Read();
+    this.result.Add(Scanner.Equal); 
+    break;
+   case ';':
+    input.Read();
+    this.result.Add(Scanner.Semi);
+    break;
    }
   }
  }
